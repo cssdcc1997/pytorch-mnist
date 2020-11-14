@@ -42,44 +42,57 @@ The image above is the origin image of the MNIST dataset -num 8. Pixel size is `
 ## conv1
 <table>
     <tr>
-        <img src="./model/lenet_feature_map/conv1_1.png" width=200 />
-        <img src="./model/lenet_feature_map/conv1_2.png" width=200 />
-        <img src="./model/lenet_feature_map/conv1_3.png" width=200 />
+        <td><img src="./model/lenet_feature_map/conv1_1.png" width=400 /></td>
+        <td><img src="./model/lenet_feature_map/conv1_2.png" width=400 /></td>
+        <td><img src="./model/lenet_feature_map/conv1_3.png" width=400 /></td>
     </tr>
     <tr>
-        <img src="./model/lenet_feature_map/conv1_4.png" width=200 />
-        <img src="./model/lenet_feature_map/conv1_5.png" width=200 />
-        <img src="./model/lenet_feature_map/conv1_6.png" width=200 />
+        <td><img src="./model/lenet_feature_map/conv1_4.png" width=400 /></td>
+        <td><img src="./model/lenet_feature_map/conv1_5.png" width=400 /></td>
+        <td><img src="./model/lenet_feature_map/conv1_6.png" width=400 /></td>
     </tr>
 </table>
 
-After once convolution, we can still recognize the image as a number `8`. Because of the output_channel number of the first convolution layer, there `6 feature maps`.
+After once convolution, we can still recognize the image as a number `8`. **Because of the output_channel number of the first convolution layer, there `6 feature maps`**.
 
 ## conv1_relu
 <table>
     <tr>
-        <td><img src="./model/lenet_feature_map/conv1_relu_1.png" width=200 /></td>
-        <td><img src="./model/lenet_feature_map/conv1_relu_2.png" width=200 /></td>
-        <td><img src="./model/lenet_feature_map/conv1_relu_3.png" width=200 /></td>
+        <td><img src="./model/lenet_feature_map/conv1_relu_1.png" width=400 /></td>
+        <td><img src="./model/lenet_feature_map/conv1_relu_2.png" width=400 /></td>
+        <td><img src="./model/lenet_feature_map/conv1_relu_3.png" width=400 /></td>
     </tr>
     <tr>
-        <td><img src="./model/lenet_feature_map/conv1_relu_4.png" width=200 /></td>
-        <td><img src="./model/lenet_feature_map/conv1_relu_5.png" width=200 /></td>
-        <td><img src="./model/lenet_feature_map/conv1_relu_6.png" width=200 /></td>
+        <td><img src="./model/lenet_feature_map/conv1_relu_4.png" width=400 /></td>
+        <td><img src="./model/lenet_feature_map/conv1_relu_5.png" width=400 /></td>
+        <td><img src="./model/lenet_feature_map/conv1_relu_6.png" width=400 /></td>
     </tr>
 </table>
 
+The output of this layer is also 6 pieces, but not all of them are posted because of space. And you can see immediately what the ReLu activation function does. In layman's terms: make black areas darker and white areas the same. The expression of ReLu:
+
+<div class="text" style=" text-align:center;">f(x) = max(0, x)</div>
+
+Make Numbers less than 0 equal 0, and Numbers greater than 0 remain the same.In the training process, image data are all normalized, so that the pixel value range is -1 ~ +1.
 
 ## conv1_relu_maxpool
 <table>
     <tr>
-        <td><img src="./model/lenet_feature_map/conv1_relu_maxpool_1.png" width=200 /></td>
-        <td><img src="./model/lenet_feature_map/conv1_relu_maxpool_2.png" width=200 /></td>
-        <td><img src="./model/lenet_feature_map/conv1_relu_maxpool_3.png" width=200 /></td>
+        <td><img src="./model/lenet_feature_map/conv1_relu_maxpool_1.png" width=400 /></td>
+        <td><img src="./model/lenet_feature_map/conv1_relu_maxpool_2.png" width=400 /></td>
+        <td><img src="./model/lenet_feature_map/conv1_relu_maxpool_3.png" width=400 /></td>
     </tr>
     <tr>
-        <td><img src="./model/lenet_feature_map/conv1_relu_maxpool_4.png" width=200 /></td>
-        <td><img src="./model/lenet_feature_map/conv1_relu_maxpool_5.png" width=200 /></td>
-        <td><img src="./model/lenet_feature_map/conv1_relu_maxpool_6.png" width=200 /></td>
+        <td><img src="./model/lenet_feature_map/conv1_relu_maxpool_4.png" width=400 /></td>
+        <td><img src="./model/lenet_feature_map/conv1_relu_maxpool_5.png" width=400 /></td>
+        <td><img src="./model/lenet_feature_map/conv1_relu_maxpool_6.png" width=400 /></td>
     </tr>
 </table>
+
+Obviously, after the image passes through the maximum pooling layer, the pixels are reduced by half, which is **what the pooling layer (sub-sampling) does: reduce the size of the image**.It can reduce the computational burden of the network and alleviate the problem of overfitting to some extent.But this is only up to a point, and the pooling layer may filter out many useful features.
+
+It is worth noting that the pooling layer used in this program is the maximum pooling MAX_pooling, so it can be found that the brightness of the overall image becomes brighter compared with the feature map of the previous layer, because the maximum pooling is to reserve the value with the maximum value in the selected area.
+
+******
+
+The other feature maps are in the path "./model/lenet_feature_map". If you look at it closely you can understand what CNN is doing. Of course, if you're not a beginner you don't have to do this.
