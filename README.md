@@ -21,3 +21,14 @@ python train.py --model MyVggNet
 
 ![](https://github.com/cssdcc1997/pytorch-mnist/blob/main/model/result/Figure_1.png)
 
+| network | accuracy(%)|
+|---|---|
+|LeNet|98.91|
+|MyFullConvNet|98.06|
+|MyNetV1|99.19|
+|MyNetV2|98.81|
+|**`MyVggNet`**|99.27|
+
+# feature map visualization
+
+<img src="https://github.com/cssdcc1997/pytorch-mnist/tree/main/model/lenet_feature_map.png", width=400 />
