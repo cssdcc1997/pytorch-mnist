@@ -41,9 +41,4 @@ The image above is the origin image of the MNIST dataset -num 8. Pixel size is `
 
 ## conv1
 
-<img src="./model/lenet_feature_map/conv1_1.png" width=200 />
-<img src="./model/lenet_feature_map/conv1_2.png" width=200 />
-<img src="./model/lenet_feature_map/conv1_3.png" width=200 />
-<img src="./model/lenet_feature_map/conv1_4.png" width=200 />
-<img src="./model/lenet_feature_map/conv1_5.png" width=200 />
-<img src="./model/lenet_feature_map/conv1_6.png" width=200 />
+<img src="./model/lenet_feature_map/conv1_1.png" width=300 /><img src="./model/lenet_feature_map/conv1_2.png" width=300 /><img src="./model/lenet_feature_map/conv1_3.png" width=300 /><img src="./model/lenet_feature_map/conv1_4.png" width=300 /><img src="./model/lenet_feature_map/conv1_5.png" width=300 /><img src="./model/lenet_feature_map/conv1_6.png" width=300 />
