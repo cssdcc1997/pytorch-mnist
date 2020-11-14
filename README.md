@@ -1,6 +1,6 @@
 # pytorch-mnist
 
-![](https://github.com/cssdcc1997/pytorch-mnist/blob/main/model/lenet_feature_map/origin_1.png)
+<img src="https://github.com/cssdcc1997/pytorch-mnist/blob/main/model/lenet_feature_map/origin_1.png" width=400 />
 
 This program realize the recognization function of `MNIST` data. The original edition is [https://github.com/pytorch/examples/blob/master/mnist/main.py](https://github.com/pytorch/examples/blob/master/mnist/main.py).
 
@@ -40,5 +40,46 @@ The feature map is generated during the test process of LeNet.
 The image above is the origin image of the MNIST dataset -num 8. Pixel size is `28 x 28`.
 
 ## conv1
+<table>
+    <tr>
+        <img src="./model/lenet_feature_map/conv1_1.png" width=200 />
+        <img src="./model/lenet_feature_map/conv1_2.png" width=200 />
+        <img src="./model/lenet_feature_map/conv1_3.png" width=200 />
+    </tr>
+    <tr>
+        <img src="./model/lenet_feature_map/conv1_4.png" width=200 />
+        <img src="./model/lenet_feature_map/conv1_5.png" width=200 />
+        <img src="./model/lenet_feature_map/conv1_6.png" width=200 />
+    </tr>
+</table>
 
-<img src="./model/lenet_feature_map/conv1_1.png" width=300 /><img src="./model/lenet_feature_map/conv1_2.png" width=300 /><img src="./model/lenet_feature_map/conv1_3.png" width=300 /><img src="./model/lenet_feature_map/conv1_4.png" width=300 /><img src="./model/lenet_feature_map/conv1_5.png" width=300 /><img src="./model/lenet_feature_map/conv1_6.png" width=300 />
+After once convolution, we can still recognize the image as a number `8`. Because of the output_channel number of the first convolution layer, there `6 feature maps`.
+
+## conv1_relu
+<table>
+    <tr>
+        <img src="./model/lenet_feature_map/conv1_relu_1.png" width=200 />
+        <img src="./model/lenet_feature_map/conv1_relu_2.png" width=200 />
+        <img src="./model/lenet_feature_map/conv1_relu_3.png" width=200 />
+    </tr>
+    <tr>
+        <img src="./model/lenet_feature_map/conv1_relu_4.png" width=200 />
+        <img src="./model/lenet_feature_map/conv1_relu_5.png" width=200 />
+        <img src="./model/lenet_feature_map/conv1_relu_6.png" width=200 />
+    </tr>
+</table>
+
+
+## conv1_relu_maxpool
+<table>
+    <tr>
+        <img src="./model/lenet_feature_map/conv1_relu_maxpool_1.png" width=200 />
+        <img src="./model/lenet_feature_map/conv1_relu_maxpool_2.png" width=200 />
+        <img src="./model/lenet_feature_map/conv1_relu_maxpool_3.png" width=200 />
+    </tr>
+    <tr>
+        <img src="./model/lenet_feature_map/conv1_relu_maxpool_4.png" width=200 />
+        <img src="./model/lenet_feature_map/conv1_relu_maxpool_5.png" width=200 />
+        <img src="./model/lenet_feature_map/conv1_relu_maxpool_6.png" width=200 />
+    </tr>
+</table>
