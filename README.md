@@ -58,14 +58,14 @@ After once convolution, we can still recognize the image as a number `8`. Becaus
 ## conv1_relu
 <table>
     <tr>
-        <img src="./model/lenet_feature_map/conv1_relu_1.png" width=200 />
-        <img src="./model/lenet_feature_map/conv1_relu_2.png" width=200 />
-        <img src="./model/lenet_feature_map/conv1_relu_3.png" width=200 />
+        <td><img src="./model/lenet_feature_map/conv1_relu_1.png" width=200 /></td>
+        <td><img src="./model/lenet_feature_map/conv1_relu_2.png" width=200 /></td>
+        <td><img src="./model/lenet_feature_map/conv1_relu_3.png" width=200 /></td>
     </tr>
     <tr>
-        <img src="./model/lenet_feature_map/conv1_relu_4.png" width=200 />
-        <img src="./model/lenet_feature_map/conv1_relu_5.png" width=200 />
-        <img src="./model/lenet_feature_map/conv1_relu_6.png" width=200 />
+        <td><img src="./model/lenet_feature_map/conv1_relu_4.png" width=200 /></td>
+        <td><img src="./model/lenet_feature_map/conv1_relu_5.png" width=200 /></td>
+        <td><img src="./model/lenet_feature_map/conv1_relu_6.png" width=200 /></td>
     </tr>
 </table>
 
@@ -73,13 +73,13 @@ After once convolution, we can still recognize the image as a number `8`. Becaus
 ## conv1_relu_maxpool
 <table>
     <tr>
-        <img src="./model/lenet_feature_map/conv1_relu_maxpool_1.png" width=200 />
-        <img src="./model/lenet_feature_map/conv1_relu_maxpool_2.png" width=200 />
-        <img src="./model/lenet_feature_map/conv1_relu_maxpool_3.png" width=200 />
+        <td><img src="./model/lenet_feature_map/conv1_relu_maxpool_1.png" width=200 /></td>
+        <td><img src="./model/lenet_feature_map/conv1_relu_maxpool_2.png" width=200 /></td>
+        <td><img src="./model/lenet_feature_map/conv1_relu_maxpool_3.png" width=200 /></td>
     </tr>
     <tr>
-        <img src="./model/lenet_feature_map/conv1_relu_maxpool_4.png" width=200 />
-        <img src="./model/lenet_feature_map/conv1_relu_maxpool_5.png" width=200 />
-        <img src="./model/lenet_feature_map/conv1_relu_maxpool_6.png" width=200 />
+        <td><img src="./model/lenet_feature_map/conv1_relu_maxpool_4.png" width=200 /></td>
+        <td><img src="./model/lenet_feature_map/conv1_relu_maxpool_5.png" width=200 /></td>
+        <td><img src="./model/lenet_feature_map/conv1_relu_maxpool_6.png" width=200 /></td>
     </tr>
 </table>
