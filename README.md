@@ -31,4 +31,19 @@ python train.py --model MyVggNet
 
 # feature map visualization
 
-<img src="https://github.com/cssdcc1997/pytorch-mnist/tree/main/model/lenet_feature_map.png", width=400 />
+The feature map is generated during the test process of LeNet.
+
+## origin graph
+
+<img src="./model/lenet_feature_map/origin_1.png" width=400 />
+
+The image above is the origin image of the MNIST dataset -num 8. Pixel size is `28 x 28`.
+
+## conv1
+
+<img src="./model/lenet_feature_map/conv1_1.png" width=200 />
+<img src="./model/lenet_feature_map/conv1_2.png" width=200 />
+<img src="./model/lenet_feature_map/conv1_3.png" width=200 />
+<img src="./model/lenet_feature_map/conv1_4.png" width=200 />
+<img src="./model/lenet_feature_map/conv1_5.png" width=200 />
+<img src="./model/lenet_feature_map/conv1_6.png" width=200 />
