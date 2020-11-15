@@ -1,7 +1,7 @@
 from __future__ import print_function # 这个是python当中让print都以python3的形式进行print，即把print视为函数
 import argparse
 import os
-import numpy as np
+#import numpy as np
 
 import torch
 import torch.nn as nn
@@ -17,7 +17,6 @@ from model.network.LeNet import LeNet
 from model.network.MyNetV1 import MyNetV1
 from model.network.MyNetV2 import MyNetV2
 from model.network.DefaultNet import DefaultNet
-from model.network.LeNet5 import LeNet5
 from model.network.MyFullConvNet import MyFullConvNet
 from model.network.MyVggNet import MyVggNet
 
