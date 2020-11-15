@@ -87,7 +87,7 @@ def main():
         # 归一化到-1 ~ 1，也不一定，但是属于标准化
         transforms.Normalize((0.1307, ), (0.3081, ))
     ])
-    dataset2 = datasets.MNIST("./data", train=False,
+    dataset2 = datasets.MNIST("./data", train=False, download=True,
                             transform=transform)
     test_loader = torch.utils.data.DataLoader(dataset2, **test_kwargs)
 
