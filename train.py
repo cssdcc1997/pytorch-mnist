@@ -79,7 +79,7 @@ def main():
     parser.add_argument("--epochs", type=int, default=64, metavar="N",
                         help="number of epochs to train (default : 64)")
     parser.add_argument("--learning-rate", type=float, default=0.1, metavar="LR",
-                        help="number of epochs to train (default : 14)")
+                        help="the learning rate (default : 0.1)")
     parser.add_argument("--gamma", type=float, default=0.5, metavar="M",
                         help="Learning rate step gamma (default : 0.5)")
     parser.add_argument("--no-cuda", action="store_true", default=True,
@@ -111,7 +111,7 @@ def main():
         test_kwargs.update(cuda_kwargs)
 
     transform = transforms.Compose([
-        transforms.ToTensor(),          # to tensor, why?
+        transforms.ToTensor(),
         # normalize(mean, std, inplace=False) mean各通道的均值， std各通道的标准差， inplace是否原地操作
         # 这里说的均值是数据里的均值
         # output = (input - mean) / std

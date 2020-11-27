@@ -25,7 +25,7 @@ class MyNetV1(nn.Module):
             nn.Conv2d(128, 512, 3, 2),
             nn.ReLU(inplace=True),
         )
-        self.classifier = nn.Sequential(    # dropout似乎用在分类的时候
+        self.classifier = nn.Sequential(    
             nn.Dropout(),
             nn.Linear(512 * 4 * 4, 1024), # 8192
             nn.ReLU(inplace=True),

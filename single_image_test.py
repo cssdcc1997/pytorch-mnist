@@ -40,12 +40,13 @@ def test(model, device):
         for i in range(28):
             for j in range(28):
                 img[i][j] = 255 - img[i][j]
-                if img[i][j] < 200:
+                if img[i][j] < 150:
                     img[i][j] = 0
         # print(img)
         # exit()
-        cv2.imshow("number 3", img)
-        cv2.waitKey()
+        cv2.imshow("number 3", img_origin)
+        #cv2.imshow("number 3", img)
+        
         img = np.array(img).astype(np.float32)
         img = np.expand_dims(img, 0)
         img = np.expand_dims(img, 0)
@@ -58,6 +59,9 @@ def test(model, device):
         #print(prob)
         pred = np.argmax(prob)
         print(pred.item())
+
+        #cv2.imshow("number 3", img)
+        cv2.waitKey()
 
 
 def main():

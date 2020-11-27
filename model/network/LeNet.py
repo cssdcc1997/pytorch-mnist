@@ -11,6 +11,7 @@ class LeNet(nn.Module):
         super(LeNet, self).__init__()
         self.conv1 = nn.Conv2d(1, 6, 5) # nn.Conv2d(3, 6, 5)
         self.conv2 = nn.Conv2d(6, 16, 5)
+        #nn.init()
         self.fc1 = nn.Linear(16 * 4 * 4, 120)
         self.fc2 = nn.Linear(120, 84)
         self.fc3 = nn.Linear(84, 10)
@@ -19,7 +20,7 @@ class LeNet(nn.Module):
         #show_graph(x, "origin")
         x = self.conv1(x)
         #show_graph(x, "conv1")
-        x = F.relu(x)
+        x = F.relu(x) #f(x) = max(0, x)
         #show_graph(x, "conv1_relu")
         x = F.max_pool2d(x, 2)
         #show_graph(x, "conv1_relu_maxpool")
@@ -40,7 +41,7 @@ class LeNet(nn.Module):
         x = self.fc3(x)
         #print(x[0])
         x = F.log_softmax(x, dim=1)
-
+        #print(x[0])
         #exit()
 
         return x
@@ -52,9 +53,11 @@ def show_graph(x, string):
     # plt.grid()
     # plt.show()
     y = copy.deepcopy(x[0])
+    print(y[0])
     y = y * 0.3081 + 0.1307
     y = y.cpu().numpy()
     print(len(y[0]))
+    print(y[0])
     ax = plt.gca()   
     if len(y[0]) < 10:
         x_major_locator=MultipleLocator(1)
@@ -71,6 +74,6 @@ def show_graph(x, string):
         #plt.xlim(0, len(y[0]))
         #plt.ylim(len(y[0]), 0)
         plt.title("LeNet_{}_{}".format(string, i + 1))
-        plt.savefig("E:/WorkSpace/Pytorch/mnist/model/lenet_feature_map/{}_{}".format(string, i + 1))
-        #plt.show()
+        #plt.savefig("E:/WorkSpace/Pytorch/mnist/model/lenet_feature_map/{}_{}".format(string, i + 1))
+        plt.show()
     
