@@ -33,6 +33,10 @@ python train.py --model MyVggNet
 
 The feature map is generated during the test process of LeNet.
 
+Check ./model/network/LeNet.py . I define a function show_graph() to show the feature map or save the feature map files.
+
+You may remove the annotation in LeNet.py to get feature map.
+
 ## origin graph
 
 <img src="./model/lenet_feature_map/origin_1.png" width=400 />
