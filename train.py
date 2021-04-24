@@ -19,33 +19,45 @@ from model.network.MyNetV2 import MyNetV2
 from model.network.DefaultNet import DefaultNet
 from model.network.MyFullConvNet import MyFullConvNet
 from model.network.MyVggNet import MyVggNet
+from model.network.NewNet import NewNet
 
 graph_loss = []
 graph_acc = []
 
-def train(args, model, device, train_loader, optimizer, epoch):
+def train(args, model, device, train_loader, test_loader, optimizer, scheduler):
     # 这里的train和上面的train不是一个train
     model.train()
-    start_time = time.time()
-    tmp_time = start_time
-    for batch_idx, (data, target) in enumerate(train_loader):
-        data, target = data.to(device), target.to(device)
-        optimizer.zero_grad()   # 优化器梯度为什么初始化为0？
-        output = model(data)
-        loss = F.nll_loss(output, target)
-        loss.backward()
-        optimizer.step()
-        if batch_idx % args.log_interval == 0:
-            print("Train Epoch: {} [{}/{} ({:.0f}%)]\t Loss: {:.6f}\t Cost time: {:.6f}s".format(
-                epoch, batch_idx * len(data), len(train_loader.dataset),
-                100. * batch_idx / len(train_loader), loss.item(), time.time() - tmp_time
-            ))
+    best_epoch = 0
+    best_acc = 0
+    for epoch in range(args.epochs):
+        start_time = time.time()
+        for batch_idx, (data, target) in enumerate(train_loader):
             tmp_time = time.time()
-            graph_loss.append(loss.item())
-            if args.dry_run:
-                break
-    end_time = time.time()
-    print("Epoch {} cost {} s".format(epoch, end_time - start_time))
+            data, target = data.to(device), target.to(device)
+            optimizer.zero_grad()   # 优化器梯度为什么初始化为0？
+            output = model(data)
+            loss = F.nll_loss(output, target)
+            loss.backward()
+            optimizer.step()
+            
+            if batch_idx % args.log_interval == 0:
+                print("Train Epoch: {} [{}/{} ({:.0f}%)]\t Loss: {:.6f}\t Cost time: {:.6f}s".format(
+                    epoch + 1, batch_idx * len(data), len(train_loader.dataset),
+                    100. * batch_idx / len(train_loader), loss.item(), time.time() - tmp_time
+                ))
+                graph_loss.append(loss.item())
+                if args.dry_run:
+                    break
+        scheduler.step()
+        end_time = time.time()
+        print("Epoch {} cost {} s".format(epoch + 1, end_time - start_time))
+        acc = test(model, device, test_loader)
+        if acc > best_acc:
+            best_acc = acc
+            best_epoch = epoch + 1
+            if args.save_model:
+                torch.save(model.state_dict(), "./model/weights/{}.pt".format(args.model))
+    print("Best epoch: {} | Best acc: {}".format(best_epoch, best_acc))
 
 def test(model, device, test_loader):
     model.eval()
@@ -68,6 +80,8 @@ def test(model, device, test_loader):
 
     graph_acc.append(100. * correct / len(test_loader.dataset))
 
+    return float(100. * correct / len(test_loader.dataset))
+
 # action 和 gamma , metavar的作用
 def main():
     # Training settings
@@ -82,8 +96,8 @@ def main():
                         help="the learning rate (default : 0.1)")
     parser.add_argument("--gamma", type=float, default=0.5, metavar="M",
                         help="Learning rate step gamma (default : 0.5)")
-    parser.add_argument("--no-cuda", action="store_true", default=True,
-                        help="disables CUDA training")
+    parser.add_argument("--use-cuda", action="store_true", default=True,
+                        help="Using CUDA training")
     parser.add_argument("--dry-run", action="store_true", default=False,
                         help="quickly check a single pass")
     parser.add_argument("--seed", type=int, default=1, metavar="S",
@@ -97,8 +111,8 @@ def main():
     parser.add_argument("--model", type=str, default="LeNet",
                         help="choose the model to train (default: LeNet)")
     args = parser.parse_args()
-    use_cuda = not args.no_cuda and torch.cuda.is_available() # not > and > or
-    print("user cuda is {}".format(use_cuda))
+    use_cuda = args.use_cuda and torch.cuda.is_available() # not > and > or
+    print("Using cuda is: {}".format(use_cuda))
     torch.manual_seed(args.seed)    # 设置随机种子，什么是随机种子？
 
     device = torch.device("cuda" if use_cuda else "cpu")
@@ -138,6 +152,8 @@ def main():
         model = MyFullConvNet().to(device)
     elif model_name == "myvggnet":
         model = MyVggNet().to(device)
+    elif model_name == "newnet":
+        model = NewNet().to(device)
 
 
 
@@ -146,18 +162,22 @@ def main():
     if model_path.exists() and args.load_state_dict == "yes":
         model.load_state_dict(torch.load(model_path))
         print("Load the last trained model.")
-    optimizer = optim.Adadelta(model.parameters(), lr=args.learning_rate)
-    #optimizer_path = Path("./model/weights/")
+    
+    #optimizer = optim.Adadelta(model.parameters(), lr=args.learning_rate)   # 使用adadelta优化器
+    optimizer = optim.Adam(model.parameters(), lr=args.learning_rate, betas=(0.9,0.999), weight_decay=0)    # 使用adam优化器
+    scheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=20, eta_min=0.00001)                  # 使用余弦退火调节机制
 
     # scheduler是学习率调整，有lambdaLR机制和stepLR机制，lr = lr * gamma^n, n = epoch/step_size
-    scheduler = StepLR(optimizer, step_size=5, gamma=args.gamma)
-    for epoch in range(1, args.epochs + 1):
-        train(args, model, device, train_loader, optimizer, epoch)
-        test(model, device, test_loader)
-        scheduler.step()
+    #scheduler = StepLR(optimizer, step_size=5, gamma=args.gamma)
+    
+    train(args, model, device, train_loader, test_loader, optimizer, scheduler)
+    # for epoch in range(1, args.epochs + 1):
+    #     train(args, model, device, train_loader, optimizer, epoch)
+    #     test(model, device, test_loader)
+    #     scheduler.step()
 
-    if args.save_model:
-        torch.save(model.state_dict(), "./model/weights/{}.pt".format(model_name))
+    # if args.save_model:
+    #     torch.save(model.state_dict(), "./model/weights/{}.pt".format(model_name))
 
     # record the training results
     create_loss_txt_path = "./model/result/{}_loss.txt".format(model_name)

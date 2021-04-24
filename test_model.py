@@ -14,7 +14,7 @@ from model.network.MyNetV2 import MyNetV2
 from model.network.DefaultNet import DefaultNet
 from model.network.MyFullConvNet import MyFullConvNet
 from model.network.MyVggNet import MyVggNet
-
+from model.network.NewNet import NewNet
 
 list_pred = list()
 def test(model, device, test_loader):
@@ -69,7 +69,7 @@ def main():
                         help="choose the model to train (default: LeNet)")
     args = parser.parse_args()
     use_cuda = not args.no_cuda and torch.cuda.is_available() # not > and > or
-
+    print("Using Cuda is:", use_cuda)
     torch.manual_seed(args.seed)    # 设置随机种子，什么是随机种子？
 
     device = torch.device("cuda" if use_cuda else "cpu")
@@ -104,6 +104,8 @@ def main():
         model = MyFullConvNet().to(device)
     elif model_name == "myvggnet":
         model = MyVggNet().to(device)
+    elif model_name == "newnet":
+        model = NewNet().to(device)
     else:
         print("Wrong model name. Try again!")
         exit()

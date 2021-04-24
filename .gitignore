@@ -1,1 +1,8 @@
+# ignore folder
 /data/
+
+# ignore hidden files
+*.
+
+# do not ignore
+!.gitignore
