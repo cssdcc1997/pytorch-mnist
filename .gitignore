@@ -1,5 +1,6 @@
 # ignore folder
 /data/
+.vscode
 
 # ignore hidden files
 *.
