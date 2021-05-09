@@ -6,7 +6,7 @@ This program realize the recognization function of `MNIST` data. The original ed
 
 In addtion to basic recognization function, i add some data visualization item including **training results visualization** and **feature map visualization**. 
 
-You can check out the blog wrote for this code: [CSDN](https://blog.csdn.net/qq_24489997/article/details/110432634?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522161683117116780255215086%2522%252C%2522scm%2522%253A%252220140713.130102334.pc%255Fall.%2522%257D&request_id=161683117116780255215086&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~first_rank_v2~rank_v29-23-110432634.pc_search_result_before_js&utm_term=pytorch+mnist+%E6%89%8B%E5%86%99%E4%BD%93).
+You can check out the blog wrote for this code: [CSDN](https://blog.csdn.net/CSSDCC/article/details/116461271).
 
 # traning results
 ```cmd
