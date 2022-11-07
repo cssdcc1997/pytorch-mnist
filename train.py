@@ -92,7 +92,7 @@ def main():
                         help="input batch size for testing (default : 1000)")
     parser.add_argument("--epochs", type=int, default=64, metavar="N",
                         help="number of epochs to train (default : 64)")
-    parser.add_argument("--learning-rate", type=float, default=0.1, metavar="LR",
+    parser.add_argument("--learning-rate", type=float, default=0.01, metavar="LR",
                         help="the learning rate (default : 0.1)")
     parser.add_argument("--gamma", type=float, default=0.5, metavar="M",
                         help="Learning rate step gamma (default : 0.5)")
